@@ -37,7 +37,26 @@ export default class Sketch{
         this.camera.position.set(0,0,2);
         this.controls = new OrbitControls(this.camera,this.renderer.domElement);
         this.time = 0; 
+
+        this.isPlaying = true;
+
+        this.addObjects();
+        this.resize();
+        this.render();
+        this.setupResize();
+        //this.settings();
     }
+
+    settings()
+    {
+        let that = this; 
+        this.settings = {
+            progress
+        };
+        this.gui = new dat.GUI();
+        this.gui.add(this.settings,"progress",0,1,0.01);
+    }
+
 
     setupResize()
     {
@@ -108,7 +127,7 @@ export default class Sketch{
     render(){
         if(!this.isPlaying) return; 
         this.time += 0.05;
-        this.material.uniforms.this.value = this.time; 
+        //this.material.uniforms.this.value = this.time; 
         requestAnimationFrame(this.render.bind(this));
         this.renderer.render(this.scene,this.camera);
     }
